@@ -12,6 +12,7 @@ import AcademicRecordsPage from './pages/records'
 import SettingsPage from './pages/settings'
 import StudentResourcesPage from './pages/student-resources'
 import LoginPage from './pages/home'
+import CoursesPage from './pages/courses'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/records" element={<AcademicRecordsPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/student-resources" element={<StudentResourcesPage />} />
+        <Route path="/courses" element={<CoursesPage />} />
         {/* add more routes here */}
       </Routes>
     </BrowserRouter>
