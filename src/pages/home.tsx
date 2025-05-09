@@ -6,10 +6,51 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
+import { useState } from "react"
+
+const users = [
+  { username: "instructor1", password: "password123", role: "instructor" },
+  { username: "student1", password: "password456", role: "student" },
+];
 
 export default function LoginPage() {
+
+  const [role, setRole] = useState<string>("instructor");
+  const [formData, setFormData] = useState({
+    username: "",
+    password: ""
+  });
+
+  const handleSubmit = () => {
+    const username = formData.username as string;
+    const password = formData.password as string;
+
+    console.log('Attempting login with:', { username, password, role });
+    console.log('Available users:', users);
+
+    const user = users.find(
+      (u) => u.username === username &&
+        u.password === password &&
+        u.role === role
+    );
+
+    console.log('Found user:', user);
+
+    if (user) {
+      // Login successful
+      console.log('Login successful:', user);
+      window.location.href = '/dashboard';
+    } else {
+      // Login failed
+      console.log('Invalid credentials');
+      alert('Invalid username or password');
+    }
+  };
+
+
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-white flex items-center justify-center p-4">
       <div className="w-full max-w-5xl grid md:grid-cols-2 gap-6 rounded-xl overflow-hidden shadow-2xl">
         {/* Left Square - Branding */}
         <div className="bg-slate-900 text-white p-8 flex flex-col justify-center relative">
@@ -45,8 +86,12 @@ export default function LoginPage() {
         <div className="bg-white p-8 flex flex-col justify-center">
           <Tabs defaultValue="instructors" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-6">
-              <TabsTrigger value="instructors">Instructors</TabsTrigger>
-              <TabsTrigger value="students">Students</TabsTrigger>
+              <TabsTrigger
+                onClick={() => setRole("instructor")}
+                value="instructors">Instructors</TabsTrigger>
+              <TabsTrigger
+                onClick={() => setRole("student")}
+                value="students">Students</TabsTrigger>
             </TabsList>
 
             <TabsContent value="instructors">
@@ -58,7 +103,9 @@ export default function LoginPage() {
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="instructor-email">Email</Label>
-                    <Input id="instructor-email" type="email" placeholder="m.instructor@edusync.edu" />
+                    <Input
+                      onChange={(e) => setFormData(prev => ({ ...prev, username: e.target.value }))}
+                      id="instructor-email" type="email" placeholder="m.instructor@edusync.edu" />
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
@@ -67,16 +114,18 @@ export default function LoginPage() {
                         Forgot password?
                       </a>
                     </div>
-                    <Input id="instructor-password" type="password" />
+                    <Input
+                      onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
+                      id="instructor-password" type="password" />
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col gap-4">
-                  <a href="/dashboard" className="w-full">
-                    <Button className="w-full bg-slate-900 hover:bg-slate-800">
-                      <GraduationCap className="mr-2 h-4 w-4" />
-                      Login as Instructor
-                    </Button>
-                  </a>
+                  <Button
+                    onClick={handleSubmit}
+                    className="w-full text-white bg-slate-900 hover:bg-slate-800">
+                    <GraduationCap className="mr-2 h-4 w-4" />
+                    Login as Instructor
+                  </Button>
                   <div className="text-sm text-center text-slate-500">
                     Don&apos;t have an account?{" "}
                     <a href="#" className="text-amber-600 hover:underline">
@@ -96,7 +145,9 @@ export default function LoginPage() {
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="student-email">Email</Label>
-                    <Input id="student-email" type="email" placeholder="s.student@edusync.edu" />
+                    <Input
+                      onChange={(e) => setFormData(prev => ({ ...prev, username: e.target.value }))}
+                      id="student-email" type="email" placeholder="s.student@edusync.edu" />
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
@@ -105,11 +156,17 @@ export default function LoginPage() {
                         Forgot password?
                       </a>
                     </div>
-                    <Input id="student-password" type="password" />
+                    <Input
+                      onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
+                      id="student-password" type="password" />
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col gap-4">
-                  <Button className="w-full bg-slate-900 hover:bg-slate-800">
+
+                  <Button
+                    // onClick={()=>handleSubmit()}
+                    onClick={handleSubmit}
+                    className="w-full text-white bg-slate-900 hover:bg-slate-800">
                     <CircleUser className="mr-2 h-4 w-4" />
                     Login as Student
                   </Button>

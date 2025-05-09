@@ -44,7 +44,8 @@ export function UserNav() {
   // const [notificationsOpen, setNotificationsOpen] = useState(false)
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 bg-white">
+
       <Sheet open={messagesOpen} onOpenChange={setMessagesOpen}>
         <SheetTrigger asChild>
           <Button variant="outline" size="2" className="relative">
@@ -179,7 +180,7 @@ export function UserNav() {
             <SheetTitle>Notifications</SheetTitle>
             <SheetDescription>Your recent notifications</SheetDescription>
           </SheetHeader>
-          <div className="py-4 h-[400px] overflow-y-auto pr-2">
+          <div className="py-4 h-[400px] overflow-y-auto pr-2 ">
             {[
               {
                 title: "Course Update",

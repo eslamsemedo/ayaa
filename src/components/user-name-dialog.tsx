@@ -54,13 +54,13 @@ export function UserNameDialog({ open, onOpenChange }: UserNameDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] bg-white">
         <DialogHeader>
           <DialogTitle>Welcome to EduSync</DialogTitle>
           <DialogDescription>Please enter your preferred username to personalize your experience.</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
-          <div className="grid gap-4 py-4">
+          <div className="grid gap-4 py-4 ">
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="username" className="text-right">
                 Username
@@ -76,7 +76,7 @@ export function UserNameDialog({ open, onOpenChange }: UserNameDialogProps) {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit" className="bg-slate-900 hover:bg-slate-800">
+            <Button type="submit" className="bg-slate-900 text-white hover:bg-slate-800">
               Continue
             </Button>
           </DialogFooter>

@@ -371,7 +371,7 @@ export default function CoursesPage() {
           </div>
 
           <div className="flex justify-end">
-            <Button onClick={() => setIsAddCourseOpen(true)} className="bg-slate-900 hover:bg-slate-800">
+            <Button onClick={() => setIsAddCourseOpen(true)} className="bg-slate-900 text-white hover:bg-slate-800">
               <Plus className="mr-2 h-4 w-4" />
               Add New Course
             </Button>
@@ -682,7 +682,7 @@ export default function CoursesPage() {
               <X className="mr-2 h-4 w-4" />
               Cancel
             </Button>
-            <Button onClick={handleAddCourse} className="bg-slate-900 hover:bg-slate-800">
+            <Button onClick={handleAddCourse} className="bg-slate-900 text-white hover:bg-slate-800">
               <Plus className="mr-2 h-4 w-4" />
               Add Course
             </Button>

@@ -143,7 +143,7 @@ export function MainNav() {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-1">
+              <Button variant="outline" size="sm" className="gap-1 text-black hover:text-black">
                 <Menu className="h-4 w-4" />
                 <span>More</span>
               </Button>
